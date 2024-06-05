@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const mongoURL = "mongodb://localhost:27017/notebook"
+const mongoURL = "mongodb://localhost:27017/todolist"
 
 const connectToMongogo = () => {
     mongoose.connect(mongoURL)
