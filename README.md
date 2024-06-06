@@ -1,6 +1,9 @@
 .....................................................................................................................................................
+
 How to use this code is also mentioned after the basic introduction.
+
 ....................................................................................................................................................
+
 Thank you for providing me the opportunity to explain my code.
 My name is Harsh saxena and here is my
 Project Overview:
@@ -29,6 +32,7 @@ E. Schema Design:
 This structure ensures that the application is secure, efficient, and user-friendly, providing robust functionality for task management while maintaining high standards of data     protection and user authentication.
 
 ..................................................................................................................................................
+
 Now lets Talk about the apis
 So basically there are total 7 apis that are working 
 
@@ -44,6 +48,7 @@ B. Task Routes
   4. deletenote - Delete a specific note using its _id
 
 .....................................................................................................................................................
+
 So this code contains folders like->
 
 Middleware
@@ -63,6 +68,7 @@ package-lock.json
 package.json
 
 ..........................................................................................................................................
+
 Dependencies to install in order to run this code 
 1. express
 2. cors
@@ -73,6 +79,7 @@ Dependencies to install in order to run this code
 7. nodemon
 
 ............................................................................................................................................
+
 Steps to run
 
 1. Download the whole source code: Skip the node_modules, package-lock.json, package.json.
@@ -80,6 +87,9 @@ Steps to run
 3. Navigate to the src folder: Use the cd command and run nodemon index.js.
 
 Further you can test my apis using postman or thunderclient
+
 .............................................................................................................................................
+
 Thank You
+
 .............................................................................................................................................
