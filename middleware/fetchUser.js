@@ -1,21 +1,33 @@
-const jwt=require('jsonwebtoken')
+const jwt = require('jsonwebtoken');
+const User = require('../src/models/UserSchema');
+const JWT_SECRET = 'harshwebsite';  // This should be kept secret and ideally stored in environment variables
 
-const JWT_SCRET='harshwebsite'    //this must be kept screat
-const fetchuser=(req,res,next)=>{
-    //get the user from jwt token and add id to req object
-    const token =req.header('auth-token');
-    if(!token){
-        res.status(401).send({error:"Please authenticate using a valid token"})
+const fetchUser = async (req, res, next) => {
+    // Get the user from jwt token and add id to req object
+    const token = req.header('auth-token');
+    if (!token) {
+        return res.status(401).send({ error: "Please authenticate using a valid token" });  // Changed error message response to return
     }
     try {
-    const decode=jwt.verify(token,JWT_SCRET)
-    console.log(decode)
-    req.user=decode.user;
-    next()
+        const decode = jwt.verify(token, JWT_SECRET);
+        console.log(decode);
+        console.log("user: " + decode.user);
+        console.log("id: " + decode.user._id);
+        
+        if (!decode || !decode.user || !decode.user._id) {
+            return res.status(401).json({ error: "Invalid token" });  // Changed error message response to return
+        }
+        
+        const user = await User.findById(decode.user._id).select('-password');
+        if (!user) {
+            return res.status(404).json({ error: "User not found" });  // Changed error message response to return
+        }
+        req.user = user;
+        next();
     } catch (error) {
-        res.status(401).send({error:"Please authenticate using a valid token"})
-
+        console.error(error);
+        return res.status(401).send({ error: "Please authenticate using a valid token" });  // Changed error message response to return
     }
-}
+};
 
-module.exports=fetchuser
+module.exports = fetchUser;
